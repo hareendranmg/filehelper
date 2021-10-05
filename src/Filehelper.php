@@ -49,12 +49,11 @@ class Filehelper
 
                     $created_by = (session()->get('userid')) ? session()->get('userid') : 0; // 0 => if the file uploaded by any unlogged user
 
-                    $file_name = ($file_name == '') ? $org_filename : $file_name;
-                    $fileNameWithExtension = $file_name . '.' . $file_extension;
-                    $path = Storage::putFileAs($folder, $file, $fileNameWithExtension);
+                    $file_name = ($file_name == '') ? $org_filename : $file_name. '.' . $file_extension;
+                    $path = Storage::putFileAs($folder, $file, $file_name);
 
                     $data = [
-                        'file_name' => $fileNameWithExtension,
+                        'file_name' => $file_name,
                         'folder' => $folder,
                         'file_path' => $path,
                         'mime_type' => $file_mime_type,
@@ -79,7 +78,7 @@ class Filehelper
                             'file_id' => $file_det->id,
                             'message' => 'File uploaded successfully',
                             'url' => $url,
-                            'file_name' => $fileNameWithExtension,
+                            'file_name' => $file_name,
                         ];
                     } else {
                         return [
@@ -101,7 +100,7 @@ class Filehelper
 
             return [
                 'status' => false,
-                'message' => 'Server error occured. Please try again',
+                'message' => $th->getMessage(),
             ];
 
         }
@@ -232,7 +231,7 @@ class Filehelper
         } catch (\Throwable $th) {
             return [
                 'status' => false,
-                'message' => 'Server error occured. Please try again',
+                'message' => $th->getMessage(),
                 'error_url' => URL::to('files/get_file?file_id=' . $encrypted_file_id),
             ];
         }
@@ -283,7 +282,7 @@ class Filehelper
         } catch (\Throwable $th) {
             return ([
                 'status' => false,
-                'message' => 'Server error occured. Please try again',
+                'message' => $th->getMessage(),
             ]);
         }
     }
@@ -350,7 +349,7 @@ class Filehelper
         } catch (\Throwable $th) {
             return [
                 'status' => false,
-                'message' => 'Server error occured. Please try again',
+                'message' => $th->getMessage(),
             ];
         }
     }
