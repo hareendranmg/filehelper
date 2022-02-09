@@ -12,7 +12,13 @@
 Via Composer
 
 ``` bash
-$ composer require keltron/filehelper
+composer require keltron/filehelper
+```
+```bash
+php artisan vendor:publish --tag=migration
+```
+```bash
+php artisan vendor:publish --tag=filehelper.config
 ```
 
 ## Usage
@@ -141,7 +147,21 @@ public static function deleteFile($encrypted_file_id) { }
 @return array — [ 'status' => true/false, ]
 
 ```
+## Helpers (Can use in blade and use without namespace in controller)
+### Can call from any blade or any controller
+``` php
+put_file($folder, $file, $file_name = '', $file_types = ['image', 'pdf', 'doc'], $max_file_size = 0)
 
+get_file($encrypted_file_id, $get_type = 0)
+
+get_file_from_path($encrypted_file_path, $get_type = 0)
+
+get_file_info($encrypted_file_id)
+
+get_file_binary($encrypted_file_id)
+
+delete_file($encrypted_file_id)
+```
 
 ## Change log
 
