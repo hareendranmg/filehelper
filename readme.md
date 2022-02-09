@@ -23,6 +23,9 @@ php artisan vendor:publish --provider="Keltron\Filehelper\FilehelperServiceProvi
 ```bash
 php artisan vendor:publish --provider="Keltron\Filehelper\FilehelperServiceProvider" --tag="migrations"
 ```
+```bash
+php artisan migrate --path=database/migrations/2021_09_13_055730_create_filehelper_table.php 
+```
 ## Files Dashboard
 View Files and folders in the project by going to the following route
 ```php

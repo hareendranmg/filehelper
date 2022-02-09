@@ -25,8 +25,7 @@ class FilehelperServiceProvider extends ServiceProvider
         
         if (!class_exists('CreateFilehelperTable')) {
             $this->publishes([
-                __DIR__ . '/database/migrations/2021_09_13_055730_create_filehelper_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_filehelper_table.php'),
-                // you can add any number of migrations here
+                __DIR__ . '/database/migrations/2021_09_13_055730_create_filehelper_table.php' => database_path('migrations/2021_09_13_055730_create_filehelper_table.php'),                // you can add any number of migrations here
             ], 'migrations');
         }
 
