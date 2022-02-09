@@ -1,10 +1,11 @@
 # Filehelper
 
-[![Latest Version on Packagist][ico-version]][https://packagist.org/packages/keltron/filehelper]
-[![Total Downloads][ico-downloads]][https://img.shields.io/packagist/dt/keltron/filehelper]
 
-
-This is where your description should go. Take a look at [contributing.md](contributing.md) to see a to do list.
+<p align="center">
+<a href="https://packagist.org/packages/keltron/filehelper"><img src="https://img.shields.io/packagist/dt/keltron/filehelper" alt="Total Downloads"></a>
+<a href="https://packagist.org/packages/keltron/filehelper"><img src="https://img.shields.io/packagist/v/keltron/filehelper" alt="Latest Stable Version"></a>
+<a href="https://packagist.org/packages/keltron/filehelper"><img src="https://img.shields.io/packagist/l/keltron/filehelper" alt="License"></a>
+</p>
 
 ## Installation
 
@@ -21,7 +22,6 @@ $ composer require keltron/filehelper
 
 
 ``` php
-<?php
 
 public static function putFile(
     $folder,
@@ -31,6 +31,9 @@ public static function putFile(
     $max_file_size = 0
 ) { }
 
+```
+
+``` java
 @param string $folder
 The folder to store the file. If the folder does not exist, it will be created.
 
@@ -56,9 +59,12 @@ The file information.['status' => true|false, 'message' => '', 'file_name' => ''
 #### Get a file from the storage by file id.
 
 ``` php
-<?php
 
 public static function getFile($encrypted_file_id, $get_type = 0) { }
+
+```
+
+``` java
 @param string $encrypted_file_id — The encrypted file id.
 
 @param int $get_type
@@ -76,9 +82,12 @@ public static function getFile($encrypted_file_id, $get_type = 0) { }
 #### Get a file from the storage by file path.
 
 ``` php
-<?php
 
 public static function getFileFromPath($encrypted_file_path, $get_type = 0) { }
+
+```
+
+``` java
 @param string $encrypted_file_path — The encrypted file path.
 
 @param int $get_type
@@ -91,9 +100,12 @@ public static function getFileFromPath($encrypted_file_path, $get_type = 0) { }
 
 #### Get information of the file by file id.
  ``` php
-<?php
 
 public static function getFileInfo($encrypted_file_id) { }
+
+```
+
+``` java
 @param string $encrypted_file_id — The encrypted file id.
 
 @return array — [ 'status' => true/false, ]
@@ -102,9 +114,12 @@ public static function getFileInfo($encrypted_file_id) { }
 ### Keltron\Filehelper\Filehelper::getFileBinary
  
  ``` php
-<?php
 
 public static function getFileBinary($encrypted_file_id) { }
+
+```
+
+``` java
 @param mixed $encrypted_file_id
 
 @return string
@@ -115,9 +130,12 @@ public static function getFileBinary($encrypted_file_id) { }
 #### Delete the file by file id.
 
 ``` php
-<?php
 
 public static function deleteFile($encrypted_file_id) { }
+
+```
+
+``` java
 @param string $encrypted_file_id — The encrypted file id.
 
 @return array — [ 'status' => true/false, ]
@@ -138,22 +156,10 @@ Please see [contributing.md](contributing.md) for details and a todolist.
 If you discover any security related issues, please email  instead of using the issue tracker.
 
 ## Credits
+- <a href="https://hareendran.ml">Hareendran M G</a>
 
-- [][link-author]
-- [All Contributors][link-contributors]
 
 ## License
 
-. Please see the [license file](license.md) for more information.
+Please see the [license file](license.md) for more information.
 
-[ico-version]: https://img.shields.io/packagist/v/keltron/filehelper.svg?style=flat-square
-[ico-downloads]: https://img.shields.io/packagist/dt/keltron/filehelper.svg?style=flat-square
-[ico-travis]: https://img.shields.io/travis/keltron/filehelper/master.svg?style=flat-square
-[ico-styleci]: https://styleci.io/repos/12345678/shield
-
-[link-packagist]: https://packagist.org/packages/keltron/filehelper
-[link-downloads]: https://packagist.org/packages/keltron/filehelper
-[link-travis]: https://travis-ci.org/keltron/filehelper
-[link-styleci]: https://styleci.io/repos/12345678
-[link-author]: https://github.com/keltron
-[link-contributors]: ../../contributors
