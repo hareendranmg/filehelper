@@ -15,10 +15,18 @@ Via Composer
 composer require keltron/filehelper
 ```
 ```bash
-php artisan vendor:publish --tag=migration
+php artisan vendor:publish --tag=filehelper.config
 ```
 ```bash
-php artisan vendor:publish --tag=filehelper.config
+php artisan vendor:publish --provider="Keltron\Filehelper\FilehelperServiceProvider"
+```
+```bash
+php artisan vendor:publish --provider="Keltron\Filehelper\FilehelperServiceProvider" --tag="migrations"
+```
+## Files Dashboard
+View Files and folders in the project by going to the following route
+```php
+files/file_helper_dashboard
 ```
 
 ## Usage
