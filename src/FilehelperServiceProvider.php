@@ -22,6 +22,13 @@ class FilehelperServiceProvider extends ServiceProvider
         $this->publishes([
             __DIR__ . '/public' => public_path('keltron/filehelper'),
         ], 'public');
+        
+        if (!class_exists('CreateFilehelperTable')) {
+            $this->publishes([
+                __DIR__ . '/database/migrations/2021_09_13_055730_create_filehelper_table.php' => database_path('migrations/' . date('Y_m_d_His', time()) . '_create_filehelper_table.php'),
+                // you can add any number of migrations here
+            ], 'migrations');
+        }
 
         // Publishing is only necessary when using the CLI.
         if ($this->app->runningInConsole()) {
