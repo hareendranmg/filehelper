@@ -15,17 +15,18 @@ class FilehelperServiceProvider extends ServiceProvider
     {
         // $this->loadTranslationsFrom(__DIR__.'/../resources/lang', 'keltron');
         $this->loadViewsFrom(__DIR__ . '/resources/views', 'keltron');
-        // ╰─ php artisan vendor:publish --tag=public --force                                                                                                                           ─╯
+
         $this->loadMigrationsFrom(__DIR__ . '/database/migrations');
         $this->loadRoutesFrom(__DIR__ . '/routes/web.php');
 
         $this->publishes([
             __DIR__ . '/public' => public_path('keltron/filehelper'),
         ], 'public');
-        
+
         if (!class_exists('CreateFilehelperTable')) {
             $this->publishes([
-                __DIR__ . '/database/migrations/2021_09_13_055730_create_filehelper_table.php' => database_path('migrations/2021_09_13_055730_create_filehelper_table.php'),                // you can add any number of migrations here
+                __DIR__ . '/database/migrations/2021_09_13_055730_create_filehelper_table.php' => database_path('migrations/2021_09_13_055730_create_filehelper_table.php'),
+                // you can add any number of migrations here
             ], 'migrations');
         }
 
@@ -43,7 +44,6 @@ class FilehelperServiceProvider extends ServiceProvider
     public function register(): void
     {
         $this->mergeConfigFrom(__DIR__ . '/config/filehelper.php', 'filehelper');
-        // ╰─ php artisan vendor:publish --tag=filehelper.config --force                                                                                                                ─╯
 
         // Register the service the package provides.
         $this->app->singleton('filehelper', function ($app) {

@@ -2,7 +2,6 @@
 
 use Keltron\Filehelper\Filehelper;
 
-
 if (!function_exists('put_file')) {
     /**
      * Insert a file into the storage.
@@ -74,6 +73,22 @@ if (!function_exists('get_file_info')) {
     {
         return Filehelper::getFileInfo($encrypted_file_id);
 
+    }
+}
+
+if (!function_exists('get_file_url')) {
+    /**
+     * Get a file from the storage by file path.
+     *
+     * @param string $encrypted_file_path The encrypted file path.
+     *
+     * @return string The file url.
+     *
+     */
+
+    function get_file_url($encrypted_file_path)
+    {
+        return Filehelper::getFileUrl($encrypted_file_path);
     }
 }
 

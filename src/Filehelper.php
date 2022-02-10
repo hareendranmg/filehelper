@@ -15,14 +15,14 @@ class Filehelper
      * @param string $folder The folder to store the file. If the folder does not exist, it will be created.
      * @param \Illuminate\Http\File|\Illuminate\Http\UploadedFile|string $file The file to store. If the file is a string, it will be converted to a file.
      * @param string $file_name (optional) The name of the file. If the file name is not provided, the file name will be the original file name.
-     * @param array $file_types (optional) File types to be accepted. If not provided, image, pdf and doc files will be accepted. Example: ['image', 'pdf']. Default: ['image', 'pdf', 'doc'] 
+     * @param array $file_types (optional) File types to be accepted. If not provided, image, pdf and doc files will be accepted. Example: ['image', 'pdf']. Default: ['image', 'pdf', 'doc']
      * @param array $max_file_size (optional) File size to be accepted. If not provided, max_file_size parameter in filehelper config file will be used.
-     * 
+     *
      * @return array The file information.['status' => true|false, 'message' => '', 'file_name' => '', 'file_path' => '', 'file_url' => '']
      *
      */
 
-    public static function putFile($folder, $file, $file_name = '', $file_types = ['image', 'pdf', 'doc'], $max_file_size = 0)
+    public static function putFile($folder, $file, $file_name = '', $file_types = ['image', 'pdf', 'doc'], $max_file_size = 0): array
     {
         try {
 
@@ -49,7 +49,7 @@ class Filehelper
 
                     $created_by = (session()->get('userid')) ? session()->get('userid') : 0; // 0 => if the file uploaded by any unlogged user
 
-                    $file_name = ($file_name == '') ? $org_filename : $file_name. '.' . $file_extension;
+                    $file_name = ($file_name == '') ? $org_filename : $file_name . '.' . $file_extension;
                     $path = Storage::putFileAs($folder, $file, $file_name);
 
                     $data = [
@@ -117,7 +117,7 @@ class Filehelper
      *
      */
 
-    public static function getFile($encrypted_file_id, $get_type = 0)
+    public static function getFile($encrypted_file_id, $get_type = 0): Response
     {
 
         try {
@@ -191,7 +191,7 @@ class Filehelper
      *
      */
 
-    public static function getFileInfo($encrypted_file_id)
+    public static function getFileInfo($encrypted_file_id): array
     {
         try {
             $file_id = decrypt($encrypted_file_id);
@@ -218,26 +218,44 @@ class Filehelper
                     return [
                         'status' => false,
                         'message' => 'Validity of the requested file is expired. ',
-                        'error_url' => URL::to('files/get_file?file_id=' . $encrypted_file_id),
+                        'error_url' => url('files/get_file?file_id=' . $encrypted_file_id),
                     ];
                 }
             } else {
                 return [
                     'status' => false,
                     'message' => 'The requested file is not available',
-                    'error_url' => URL::to('files/get_file?file_id=' . $encrypted_file_id),
+                    'error_url' => url('files/get_file?file_id=' . $encrypted_file_id),
                 ];
             }
         } catch (\Throwable $th) {
             return [
                 'status' => false,
                 'message' => $th->getMessage(),
-                'error_url' => URL::to('files/get_file?file_id=' . $encrypted_file_id),
+                'error_url' => url('files/get_file?file_id=' . $encrypted_file_id),
             ];
         }
     }
 
-    public static function getFileBinary($encrypted_file_id)
+    /**
+     * Get file url from encrypted file id.
+     *
+     * @param string $encrypted_file_id The encrypted file id.
+     *
+     * @return string The file url.
+     *
+     */
+
+    public static function getFileUrl($encrypted_file_id): string
+    {
+        try {
+            return url('files/get_file?file_id=' . $encrypted_file_id);
+        } catch (\Throwable $th) {
+            return url('files/get_file?file_id=' . $encrypted_file_id);
+        }
+    }
+
+    public static function getFileBinary($encrypted_file_id): string
     {
         try {
             $file_id = decrypt($encrypted_file_id);
@@ -261,7 +279,7 @@ class Filehelper
      * ]
      *
      */
-    public static function deleteFile($encrypted_file_id)
+    public static function deleteFile($encrypted_file_id): array
     {
         try {
             $file_id = decrypt($encrypted_file_id);
@@ -287,7 +305,7 @@ class Filehelper
         }
     }
 
-    public static function checkFileType($file, $file_extension, $file_mime_type, $file_types)
+    public static function checkFileType($file, $file_extension, $file_mime_type, $file_types): array
     {
         try {
 
