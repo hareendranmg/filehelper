@@ -117,7 +117,7 @@ class Filehelper
      *
      */
 
-    public static function getFile($encrypted_file_id, $get_type = 0): Response
+    public static function getFile($encrypted_file_id, $get_type = 0)
     {
 
         try {
