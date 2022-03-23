@@ -1,5 +1,8 @@
 # Changelog
 
+## Version v1.2.0 - 13/02/2022
+    - [Fix] Change invalid response type in getFile function
+    
 ## Version v1.1.0 - 10/02/2022
     - Add new function to get file url
     
