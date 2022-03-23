@@ -1,5 +1,8 @@
 # Changelog
 
+## Version v1.1.0 - 10/02/2022
+    - Add new function to get file url
+    
 ## Version v1.0.6 - 09/02/2022
     - Update migration publish file
     - Updated readme.md

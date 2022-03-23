@@ -113,6 +113,22 @@ public static function getFileFromPath($encrypted_file_path, $get_type = 0) { }
 @return \Illuminate\Http\Response
 ```
 
+### Keltron\Filehelper\Filehelper::getFileUrl
+
+#### Get file url from encrypted file id.
+
+``` php
+
+public static function getFileUrl($encrypted_file_path) { }
+
+```
+
+``` java
+@param string $encrypted_file_id The encrypted file id.
+
+@return string The file url.
+```
+
 ### Keltron\Filehelper\Filehelper::getFileInfo
 
 #### Get information of the file by file id.
@@ -166,6 +182,8 @@ put_file($folder, $file, $file_name = '', $file_types = ['image', 'pdf', 'doc'],
 get_file($encrypted_file_id, $get_type = 0)
 
 get_file_from_path($encrypted_file_path, $get_type = 0)
+
+get_file_url($encrypted_file_id)
 
 get_file_info($encrypted_file_id)
 
