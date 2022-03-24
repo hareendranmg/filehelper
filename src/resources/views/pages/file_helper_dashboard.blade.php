@@ -35,6 +35,7 @@
     transition: 0.2s all cubic-bezier(0.4, 0.0, 0.2, 1);
     position: relative;
     margin-right: 10px;
+    margin-top: 10px;
     cursor: pointer;
 }
 

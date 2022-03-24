@@ -1,5 +1,7 @@
 # Changelog
 
+## Version v2.0.1 - 24/03/2022
+    - [Style] Added margin to the thumbnails.
 ## Version v2.0.0 - 24/03/2022
     - [Feat] Add Login and Logout methods.
     - [Feat] Add functions to get file type icon
