@@ -9,6 +9,9 @@ use Keltron\Filehelper\Models\FilehelperModel;
 
 class Filehelper
 {
+
+    public static $imageExtensions = ['jpg', 'jpeg', 'png', 'gif', 'bmp', 'svg'];
+
     /**
      * Insert a file into the storage.
      *
@@ -156,6 +159,82 @@ class Filehelper
     }
 
     /**
+     * Get file type icon from the encrypted file id.
+     *
+     * @param string $encrypted_file_id The encrypted file id.
+     *
+     * @return string The file type icon.
+     *
+     */
+
+    public static function getFileTypeImageFromId($encrypted_file_id)
+    {
+
+        try {
+
+            $file_id = decrypt($encrypted_file_id);
+
+            $file = FileHelperModel::find($file_id);
+
+            if ($file) {
+                // check if the file extension contain image extension
+                // if the file type is image then return the image itself
+                // else return the file type icon
+                if (in_array($file->file_extension, self::$imageExtensions)) {
+                    return self::getFile($encrypted_file_id);
+                } else {
+                    return self::getFileTypeImage($file->file_extension);
+                }
+
+                return self::getFileTypeImage($file->file_extension);
+
+            } else {
+
+                return self::getFileTypeImage('file');
+
+            }
+
+        } catch (\Throwable $th) {
+
+            return self::getFileTypeImage('file');
+
+        }
+    }
+
+    /**
+     * Get file type icon from the file path.
+     *
+     * @param string $encrypted_file_path The encrypted file path.
+     *
+     * @return string The image file type icon.
+     *
+     */
+
+    public static function getFileTypeImageFromPath($encryptedFilePath)
+    {
+
+        try {
+
+            $fileExtension = FileHelperModel::where('file_path', base64_decode($encryptedFilePath))
+                ->value('file_extension');
+
+            // check if the file extension contain image extension
+            // if the file type is image then return the image itself
+            // else return the file type icon
+            if (in_array($fileExtension, self::$imageExtensions)) {
+                return self::getFileFromPath($encryptedFilePath);
+            } else {
+                return self::getFileTypeImage($fileExtension);
+            }
+
+        } catch (\Throwable $th) {
+
+            return self::getFileTypeImage('file');
+
+        }
+    }
+
+    /**
      * Get a file from the storage by file path.
      *
      * @param string $encrypted_file_path The encrypted file path.
@@ -213,6 +292,7 @@ class Filehelper
                         'created_by' => $file->created_by,
                         'updated_by' => $file->updated_by,
                         'url' => url('files/get_file?file_id=' . $encrypted_file_id),
+                        'file_type_icon' => self::getFileTypeImage($file->file_extension),
                     ];
                 } else {
                     return [
@@ -369,6 +449,64 @@ class Filehelper
                 'status' => false,
                 'message' => $th->getMessage(),
             ];
+        }
+    }
+
+    public static function getFileTypeImage($fileExtension)
+    {
+        $fileExtension = strtolower($fileExtension);
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/doc.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/html.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/json-file.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/mp4.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/pdf.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/txt.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/xls.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/zip.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/css.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/csv.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/file.png
+        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/jpg.png
+
+        $file_types_array = [
+            'doc' => 'doc.png',
+            'docx' => 'doc.png',
+            'odt' => 'doc.png',
+            'pdf' => 'pdf.png',
+            'xls' => 'xls.png',
+            'xlsx' => 'xls.png',
+            'ods' => 'xls.png',
+            'txt' => 'txt.png',
+            'zip' => 'zip.png',
+            'tar.gz' => 'zip.png',
+            'mp4' => 'mp4.png',
+            'avi' => 'mp4.png',
+            'png' => 'png.png',
+            'jpe' => 'png.png',
+            'jpeg' => 'png.png',
+            'jpg' => 'png.png',
+            'gif' => 'png.png',
+            'bmp' => 'png.png',
+            'ico' => 'png.png',
+            'svg' => 'png.png',
+            'svgz' => 'png.png',
+            'html' => 'html.png',
+            'json' => 'json-file.png',
+            'txt' => 'txt.png',
+            'css' => 'css.png',
+            'csv' => 'csv.png',
+            'file' => 'file.png',
+            'jpg' => 'jpg.png',
+        ];
+
+        if (isset($file_types_array[$fileExtension])) {
+
+            return response()->file(public_path('keltron/filehelper/img/' . $file_types_array[$fileExtension]));
+
+        } else {
+
+            return response()->file(public_path('keltron/filehelper/img/file.png'));
+
         }
     }
 }

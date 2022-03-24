@@ -31,6 +31,13 @@ View Files and folders in the project by going to the following route
 ```php
 files/file_helper_dashboard
 ```
+Login credentials (username/password) are required to access the files dashboard.
+
+These can be set in the filehelper.php config file.
+
+Default credentials are fh_admin/fh_admin@246
+
+Be sure to change these credentials before deploying the application.
 
 ## Usage
 
@@ -113,6 +120,38 @@ public static function getFileFromPath($encrypted_file_path, $get_type = 0) { }
 @return \Illuminate\Http\Response
 ```
 
+### Keltron\Filehelper\Filehelper::getFileTypeImageFromId
+
+#### Get a file type icon image from the file id.
+
+``` php
+
+public static function getFileTypeImageFromId($encryptedFileId) { }
+
+```
+
+``` java
+@param string $encryptedFileId — The encrypted file id.
+
+@return \Illuminate\Http\Response
+```
+
+### Keltron\Filehelper\Filehelper::getFileTypeImageFromPath
+
+#### Get a file type icon image from the file path.
+
+``` php
+
+public static function getFileTypeImageFromPath($encryptedFilePath) { }
+
+```
+
+``` java
+@param string $encryptedFilePath — The encrypted file path.
+
+@return \Illuminate\Http\Response
+```
+
 ### Keltron\Filehelper\Filehelper::getFileUrl
 
 #### Get file url from encrypted file id.
@@ -182,6 +221,10 @@ put_file($folder, $file, $file_name = '', $file_types = ['image', 'pdf', 'doc'],
 get_file($encrypted_file_id, $get_type = 0)
 
 get_file_from_path($encrypted_file_path, $get_type = 0)
+
+get_file_type_image_from_id($encrypted_file_path)
+
+get_file_type_image_from_path($encrypted_file_path)
 
 get_file_url($encrypted_file_id)
 

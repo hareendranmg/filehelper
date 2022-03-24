@@ -1,5 +1,11 @@
 # Changelog
 
+## Version v2.0.0 - 24/03/2022
+    - [Feat] Add Login and Logout methods.
+    - [Feat] Add functions to get file type icon
+                - Fn 1: getFileTypeImageFromId($encryptedFileId)
+                - Fn 2: getFileTypeImageFromPath($encryptedFilePath)
+
 ## Version v1.2.0 - 13/02/2022
     - [Fix] Change invalid response type in getFile function
     

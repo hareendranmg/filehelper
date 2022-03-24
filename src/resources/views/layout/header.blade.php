@@ -6,7 +6,7 @@
     </ul>
     <ul class="navbar-nav">
         <li class="nav-item d-none d-sm-inline-block">
-            <a href="{{ URL::to('/file_helper_dashboard') }}" class="nav-link">Files Dashboard</a>
+            <a href="{{ url('files/file_helper_dashboard') }}" class="nav-link">Files Dashboard</a>
         </li>
     </ul>
     <div class="row navbar-nav ml-auto">
@@ -24,6 +24,13 @@
                 </label>
             </div>
         </ul>
+
+        <ul class="navbar-nav ml-2 mr-4">
+            <li class="nav-item d-none d-sm-inline-block bg-warning rounded">
+                <a href="{{ url('files/logout') }}" class="nav-link">Logout <i class="fas fa-sign-out-alt"></i></a>
+            </li>
+        </ul>
+
     </div>
 
 </nav>

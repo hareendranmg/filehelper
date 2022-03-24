@@ -92,6 +92,38 @@ if (!function_exists('get_file_url')) {
     }
 }
 
+if (!function_exists('get_file_type_image_from_id')) {
+    /**
+     * Get file type icon from the encrypted file id.
+     *
+     * @param string $encrypted_file_id The encrypted file id.
+     *
+     * @return string The font awesome file type icon.
+     *
+     */
+
+    function get_file_type_image_from_id($encrypted_file_path)
+    {
+        return Filehelper::getFileTypeImageFromId($encrypted_file_path);
+    }
+}
+
+if (!function_exists('get_file_type_image_from_path')) {
+    /**
+     * Get file type icon from the file path.
+     *
+     * @param string $encrypted_file_path The encrypted file path.
+     *
+     * @return string The font awesome file type icon.
+     *
+     */
+
+    function get_file_type_image_from_path($encrypted_file_path)
+    {
+        return Filehelper::getFileTypeImageFromPath($encrypted_file_path);
+    }
+}
+
 if (!function_exists('get_file_binary')) {
 
     function get_file_binary($encrypted_file_id)

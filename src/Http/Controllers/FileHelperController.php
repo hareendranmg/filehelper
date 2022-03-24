@@ -11,6 +11,10 @@ class FileHelperController extends Controller
 {
     public function index(Request $request)
     {
+        if (!session()->has('filehelper_user')) {
+            return redirect('/files/file_helper_login');
+        }
+
         $directories = Storage::directories();
         $files = Storage::files();
         return view('keltron::pages.file_helper_dashboard', compact('directories', 'files'));
@@ -18,6 +22,10 @@ class FileHelperController extends Controller
 
     public function openFolder(Request $request)
     {
+        if (!session()->has('filehelper_user')) {
+            return redirect('/files/file_helper_login');
+        }
+
         $directories = Storage::directories($request->directory);
         $files = Storage::files($request->directory);
         return json_encode([
@@ -28,6 +36,10 @@ class FileHelperController extends Controller
 
     public function store(Request $request)
     {
+        if (!session()->has('filehelper_user')) {
+            return redirect('/files/file_helper_login');
+        }
+        
         $file = $request->file('file_upload');
         $file_name = $request->name;
 

@@ -44,12 +44,11 @@
 
 .tile i {
     color: #00A8FF;
-    height: 55px;
-    margin-bottom: 20px;
-    font-size: 30px;
+    height: 150px;
+    font-size: 136px;
     display: block;
-    line-height: 54px;
     cursor: pointer;
+    margin-top: -40px;
 }
 
 .tile i.mdi-file-document {
@@ -95,6 +94,11 @@
 .folder-wrap.level-down {
     transform: scale(0.8);
 }
+
+.thumbnail {
+    border-radius: 12px;
+    margin-top: 10px;
+}
 </style>
 
 
@@ -116,7 +120,7 @@
 
         @foreach($files as $file)
         <div class="tile form" onclick="openFile('{{base64_encode($file)}}')">
-            <img src="{{url('/files/get_file_from_path?file_path='.base64_encode($file))}}" height="100px" width="100px" />
+            <img class="thumbnail" src="{{url('/files/get_file_type_image_from_path?file_path='.base64_encode($file))}}" height="100px" width="100px" />
             <p>{{$file}}</p>
         </div>
         @endforeach
@@ -200,7 +204,7 @@ function openFolder(directory) {
 
                 newFolder +=
                     '<div class="tile form" onclick="openFile(`' + filePath + '`)"> \
-                        <img src="{{url("/files/get_file_from_path")}}/' + "?file_path="+filePath + '" height="100px" width="100px" /> \
+                        <img class="thumbnail" src="{{url("/files/get_file_type_image_from_path")}}/' + "?file_path="+filePath + '" height="100px" width="100px" /> \
                         <p>' + basename(element) + '</p> \
                         </div>'
                     });
