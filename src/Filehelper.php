@@ -454,56 +454,63 @@ class Filehelper
 
     public static function getFileTypeImage($fileExtension)
     {
-        $fileExtension = strtolower($fileExtension);
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/doc.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/html.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/json-file.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/mp4.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/pdf.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/txt.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/xls.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/zip.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/css.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/csv.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/file.png
-        // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/jpg.png
+        try {
 
-        $file_types_array = [
-            'doc' => 'doc.png',
-            'docx' => 'doc.png',
-            'odt' => 'doc.png',
-            'pdf' => 'pdf.png',
-            'xls' => 'xls.png',
-            'xlsx' => 'xls.png',
-            'ods' => 'xls.png',
-            'txt' => 'txt.png',
-            'zip' => 'zip.png',
-            'tar.gz' => 'zip.png',
-            'mp4' => 'mp4.png',
-            'avi' => 'mp4.png',
-            'png' => 'png.png',
-            'jpe' => 'png.png',
-            'jpeg' => 'png.png',
-            'jpg' => 'png.png',
-            'gif' => 'png.png',
-            'bmp' => 'png.png',
-            'ico' => 'png.png',
-            'svg' => 'png.png',
-            'svgz' => 'png.png',
-            'html' => 'html.png',
-            'json' => 'json-file.png',
-            'txt' => 'txt.png',
-            'css' => 'css.png',
-            'csv' => 'csv.png',
-            'file' => 'file.png',
-            'jpg' => 'jpg.png',
-        ];
+            $fileExtension = strtolower($fileExtension);
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/doc.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/html.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/json-file.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/mp4.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/pdf.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/txt.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/xls.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/zip.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/css.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/csv.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/file.png
+            // /var/www/html/filehelper/packages/keltron/filehelper/src/public/img/jpg.png
 
-        if (isset($file_types_array[$fileExtension])) {
+            $file_types_array = [
+                'doc' => 'doc.png',
+                'docx' => 'doc.png',
+                'odt' => 'doc.png',
+                'pdf' => 'pdf.png',
+                'xls' => 'xls.png',
+                'xlsx' => 'xls.png',
+                'ods' => 'xls.png',
+                'txt' => 'txt.png',
+                'zip' => 'zip.png',
+                'tar.gz' => 'zip.png',
+                'mp4' => 'mp4.png',
+                'avi' => 'mp4.png',
+                'png' => 'png.png',
+                'jpe' => 'png.png',
+                'jpeg' => 'png.png',
+                'jpg' => 'png.png',
+                'gif' => 'png.png',
+                'bmp' => 'png.png',
+                'ico' => 'png.png',
+                'svg' => 'png.png',
+                'svgz' => 'png.png',
+                'html' => 'html.png',
+                'json' => 'json-file.png',
+                'txt' => 'txt.png',
+                'css' => 'css.png',
+                'csv' => 'csv.png',
+                'file' => 'file.png',
+                'jpg' => 'jpg.png',
+            ];
 
-            return response()->file(public_path('keltron/filehelper/img/' . $file_types_array[$fileExtension]));
+            if (isset($file_types_array[$fileExtension])) {
 
-        } else {
+                return response()->file(public_path('keltron/filehelper/img/' . $file_types_array[$fileExtension]));
+
+            } else {
+
+                return response()->file(public_path('keltron/filehelper/img/file.png'));
+
+            }
+        } catch (\Throwable $th) {
 
             return response()->file(public_path('keltron/filehelper/img/file.png'));
 
