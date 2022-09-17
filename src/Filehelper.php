@@ -21,8 +21,10 @@ class Filehelper
      * @param array $file_types (optional) File types to be accepted. If not provided, image, pdf and doc files will be accepted. Example: ['image', 'pdf']. Default: ['image', 'pdf', 'doc']
      * @param array $max_file_size (optional) File size to be accepted. If not provided, max_file_size parameter in filehelper config file will be used.
      *
-     * @return array The file information.['status' => true|false, 'message' => '', 'file_name' => '', 'file_path' => '', 'file_url' => '']
-     *
+     * @return array The file information.
+     * [
+     *  'status' => true|false, 'message', 'file_id', 'url', 'file_name'
+     * ]
      */
 
     public static function putFile($folder, $file, $file_name = '', $file_types = ['image', 'pdf', 'doc'], $max_file_size = 0): array
