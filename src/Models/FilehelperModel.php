@@ -25,4 +25,20 @@ class FilehelperModel extends Model
         'created_by',
         'updated_by',
     ];
+    
+    public function getUrlAttribute()
+    {
+        return url('files/get_file?file_id=' . encrypt($this->id));
+    }
+
+    public function getDownloadUrlAttribute()
+    {
+        return url('files/get_file?file_id=' . encrypt($this->id) . '&get_type=1');
+    }
+
+    // append attributes to the response
+    protected $appends = [
+        'url',
+        'download_url',
+    ];
 }
